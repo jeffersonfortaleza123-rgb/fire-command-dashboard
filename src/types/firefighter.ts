@@ -1,4 +1,4 @@
-export type Graduacao = 'SD' | 'CB' | 'SGT' | 'TEN';
+export type Graduacao = 'SD' | 'CB' | '3º SGT' | '2º SGT' | '1º SGT' | 'TEN';
 
 export type Funcao = 
   | 'Motorista B' 
@@ -9,7 +9,7 @@ export type Funcao =
 
 export type Guarnicao = 'ALFA' | 'BRAVO' | 'CHARLIE' | 'DELTA';
 
-export type TipoServico = 'O' | 'P' | 'R' | 'E' | 'CIF' | '';
+export type TipoServico = 'O' | 'P' | 'R' | 'E' | 'CIF' | 'D' | 'U' | 'X' | '';
 
 export interface Militar {
   id: string;
@@ -42,6 +42,8 @@ export interface Permuta {
   dia2: number;
   mes: number;
   ano: number;
+  processoSei?: string;
+  situacao: 'pendente' | 'assinada' | 'executada' | 'cancelada';
   status: 'pendente' | 'executada' | 'cancelada';
   dataExecucao?: string;
 }
@@ -55,17 +57,23 @@ export interface Alerta {
   impacto: string;
 }
 
-export const GRADUACOES: Graduacao[] = ['SD', 'CB', 'SGT', 'TEN'];
+export const GRADUACOES: Graduacao[] = ['SD', 'CB', '3º SGT', '2º SGT', '1º SGT', 'TEN'];
 export const FUNCOES: Funcao[] = ['Motorista B', 'Motorista D', 'Piloto', 'Chefe de Guarnição', 'Outros'];
 export const GUARNICOES: Guarnicao[] = ['ALFA', 'BRAVO', 'CHARLIE', 'DELTA'];
-export const TIPOS_SERVICO: { valor: TipoServico; label: string }[] = [
-  { valor: 'O', label: 'Operacional' },
-  { valor: 'P', label: 'Plantão' },
-  { valor: 'R', label: 'Reserva' },
-  { valor: 'E', label: 'Expediente' },
-  { valor: 'CIF', label: 'Inc. Florestal' },
-  { valor: '', label: 'Vazio' },
+
+export const TIPOS_SERVICO: { valor: TipoServico; label: string; cor: string }[] = [
+  { valor: 'O', label: 'Serviço Operacional - Ordinário', cor: 'bg-green-600 text-white' },
+  { valor: 'P', label: 'Serviço Operacional - PJES 24H', cor: 'bg-yellow-400 text-black' },
+  { valor: 'R', label: 'Serviço Rabecão - 24H', cor: 'bg-purple-600 text-white' },
+  { valor: 'E', label: 'Expediente Administrativo', cor: 'bg-blue-500 text-white' },
+  { valor: 'D', label: 'Serviço Operacional - 12H 1º Turno', cor: 'bg-orange-500 text-white' },
+  { valor: 'U', label: 'Serviço Operacional - 12H 2º Turno', cor: 'bg-orange-700 text-white' },
+  { valor: 'X', label: 'Serviço Extra', cor: 'bg-red-600 text-white' },
+  { valor: 'CIF', label: 'Combate a Incêndio Florestal', cor: 'bg-red-800 text-white' },
+  { valor: '', label: 'Limpar', cor: '' },
 ];
+
+export const DIAS_SEMANA = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
 export const MESES = [
   'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
