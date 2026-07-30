@@ -1,26 +1,19 @@
-import js from "@eslint/js";
-import globals from "globals";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import tseslint from "typescript-eslint";
+function App() {
+  return (
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <header className="border-b border-border bg-card px-6 py-4">
+        <h1 className="font-display text-xl tracking-wide text-foreground">
+          Painel de Controle de Permutas — 3º GB
+        </h1>
+      </header>
 
-export default tseslint.config(
-  { ignores: ["dist"] },
-  {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ["**/*.{ts,tsx}"],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-    plugins: {
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-    },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-      "@typescript-eslint/no-unused-vars": "off",
-    },
-  },
-);
+      <main className="flex-1 flex items-center justify-center p-6">
+        <p className="text-muted-foreground text-sm">
+          Base do projeto criada. Próximas etapas em desenvolvimento.
+        </p>
+      </main>
+    </div>
+  );
+}
+
+export default App;
